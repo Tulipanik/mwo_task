@@ -28,7 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: publish
     environment:
-      name: 'Dev'
+      name: Dev
       url: developmentservicemwo.azurewebsites.net
     steps:
       - name: Download a Build Artifact
@@ -44,7 +44,7 @@ jobs:
       runs-on: ubuntu-latest
       needs: publish
       environment:
-        name: 'Prod'
+        name: Prod
         url: productionservicemwo.azurewebsites.net
       steps:
         - name: Download a Build Artifact
