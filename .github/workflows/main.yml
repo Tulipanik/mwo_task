@@ -13,6 +13,20 @@ jobs:
     
     steps:
       - uses: actions/checkout@v3
+      - name: Create and Modify File
+        run: |
+          FILE_PATH=./version.txt
+          VERSION_FILE_PATH=./version.txt
+          CURRENT_VERSION=$(cat $VERSION_FILE_PATH 2>/dev/null || echo "0.0.0")
+          NEW_VERSION=$(echo $CURRENT_VERSION | awk -F. -v OFS=. '{++$NF} 1')
+          echo $NEW_VERSION > $VERSION_FILE_PATH
+
+      - name: Upload Modified File
+        uses: actions/upload-artifact@v2
+        with:
+          name: modified-files
+          path: ./version.txt
+          
       - name: Setup Java JDK
         uses: actions/setup-java@v4.0.0
         with:
