@@ -13,14 +13,6 @@ jobs:
     
     steps:
       - uses: actions/checkout@v3
-
-      - name: Create Version File
-        run: |
-          FILE_PATH=./version.txt
-  
-          if [ ! -f $FILE_PATH ]; then
-            echo "0.0.0" > $FILE_PATH
-          fi
   
       - name: Push to protected branch
         uses: CasperWA/push-protected@v2
