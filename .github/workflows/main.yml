@@ -22,23 +22,13 @@ jobs:
             echo "0.0.0" > $FILE_PATH
           fi
   
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+      - name: Push to protected branch
+        uses: CasperWA/push-protected@v2
         with:
-          tag_name: v${{ steps.create_version.outputs.version }}
-          release_name: Release ${{ steps.create_version.outputs.version }}
-          body: |
-            Changelog and release notes go here.
-  
-      - name: Upload Version File
-        uses: actions/upload-artifact@v2
-        with:
-          name: version-file
-          path: version.txt
-          
+          token: ${{ secrets.GIT_TOKEN }}
+          branch: main
+          unprotect_reviews: true
+            
       - name: Setup Java JDK
         uses: actions/setup-java@v4.0.0
         with:
