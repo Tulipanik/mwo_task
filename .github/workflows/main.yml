@@ -29,7 +29,7 @@ jobs:
     needs: publish
     environment:
       name: 'Dev'
-      url: ${{developmentservicemwo.azurewebsites.net}}
+      url: developmentservicemwo.azurewebsites.net
     steps:
       - name: Download a Build Artifact
         uses: actions/download-artifact@v2.1.1
@@ -45,7 +45,7 @@ jobs:
       needs: publish
       environment:
         name: 'Prod'
-        url: ${{productionservicemwo.azurewebsites.net}}
+        url: productionservicemwo.azurewebsites.net
       steps:
         - name: Download a Build Artifact
           uses: actions/download-artifact@v2.1.1
